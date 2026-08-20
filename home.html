@@ -1,0 +1,64 @@
+import { useState } from "react"
+
+export function Todolist1(){
+    const [movie,setMovie]=useState("");
+    const [movieList,setMovielist]=useState([]);
+    function add(){
+        setMovielist([...movieList,movie])
+        setMovie("")
+    }
+    return(<>
+    <h1>MovieList</h1>
+    <input type="text" value={movie} placeholder="Enter movie name" onChange={(e) => setMovie(e.target.value)}/>
+    <button onClick={() => add()}>Add Movie</button>
+    <ul>
+        {movieList.map((m)=><li>{m}</li>)}
+    </ul>
+    </>)
+}
+
+export function StudentData(){
+    const [name,setName] = useState("")
+    const [marks,setMarks] = useState("")
+    const [percentage,setPercentage] = useState("");
+    const [details,setDetails] = useState([])
+    function save(){
+        if(name != "" && marks != "" && percentage != ""){
+        let data = {Name:name,Marks:marks,Percentage:percentage}
+        setDetails([...details,data])
+        setName("")
+        setMarks("")
+        setPercentage("")
+    }
+}
+    return(<>
+      <h1>Students Details</h1>
+      <label>Name:</label>
+      <input type="text" value={name} placeholder="Enter your Name" onChange={(e) => setName(e.target.value)}/>
+      <label>Marks:</label>
+      <input type="number"  value={marks} placeholder="Enter your Marks" onChange={(e) => setMarks(e.target.value)}/>
+      <label>Percentage</label>
+      <input type="number" value={percentage} placeholder="Enter your percentage" onChange={(e) => setPercentage(e.target.value)}/>
+      <button onClick={() => save()}>Save</button><br></br>
+      {details.length !=0 ? 
+      <table border={1} cellSpacing={0} cellPadding={3}>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {details.map((d) =><tr>
+                <td>{d.Name}</td>
+                <td>{d.Marks}</td>
+                <td>{d.Percentage}</td>
+            </tr>)}
+        </tbody>
+      </table>:<p>Empty data</p> }
+    </>)
+            
+            
+}
