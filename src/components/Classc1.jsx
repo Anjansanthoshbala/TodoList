@@ -1,0 +1,10 @@
+import { Component } from "react";
+
+class Classc1 extends Component{
+    render() {
+        return (<>
+             <h1>This is  class Component</h1>
+            </>)
+    }
+}
+export default Classc1
